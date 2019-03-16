@@ -4623,10 +4623,7 @@ public class XSSFSheet extends POIXMLDocumentPart implements Sheet  {
                         if(nextCell != null && nextCell != cell && nextCell.getCellType() == CellType.FORMULA){
                             CTCellFormula nextF = nextCell.getCTCell().getF();
                             nextF.setStringValue(nextCell.getCellFormula(evalWb));
-                            CellRangeAddress nextRef = new CellRangeAddress(
-                                    nextCell.getRowIndex(), ref.getLastRow(),
-                                    nextCell.getColumnIndex(), ref.getLastColumn());
-                            nextF.setRef(nextRef.formatAsString());
+                            nextF.setRef(f.getRef());
 
                             sharedFormulas.put((int)nextF.getSi(), nextF);
                             break DONE;
